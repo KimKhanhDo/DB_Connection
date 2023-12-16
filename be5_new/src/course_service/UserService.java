@@ -81,7 +81,6 @@ public class UserService {
 		} else {
 			System.out.println("Invalid Account!!!");
 
-			// Get a Student object by ID
 			Student student = getStudentById(id);
 
 			if (student != null) {
