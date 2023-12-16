@@ -46,7 +46,7 @@ public class CourseService {
 	    String SQL = "SELECT teacher.id, teacher.name, teacher.email, teacher.phone " +
 	                 "FROM teacher " +
 	                 "JOIN teaching_info ON teacher.id = teaching_info.teacher_id " +
-	                 "WHERE teaching_info.course_id = " + course.getId();  // Note: Directly embedding the course ID
+	                 "WHERE teaching_info.course_id = " + course.getId();  
 
 	    Statement stm = connection.createStatement();
 	    ResultSet resultSet = stm.executeQuery(SQL);
