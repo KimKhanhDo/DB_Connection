@@ -38,21 +38,18 @@ public class CourseService {
 		return courseList;
 	}
 
-
 	
-	public static List<Mentor> showMentorByCourse(Course course) throws SQLException {
+	public static List<Mentor> showMentorByCourse2(Course course) throws SQLException {
 	    List<Mentor> mentors = new ArrayList<>();
 
 	    Connection connection = DBConnection.makeConnection();
 	    String SQL = "SELECT teacher.id, teacher.name, teacher.email, teacher.phone " +
 	                 "FROM teacher " +
 	                 "JOIN teaching_info ON teacher.id = teaching_info.teacher_id " +
-	                 "WHERE teaching_info.course_id = ?";
+	                 "WHERE teaching_info.course_id = " + course.getId();  // Note: Directly embedding the course ID
 
-	    PreparedStatement stm = connection.prepareStatement(SQL);
-	    stm.setInt(1, course.getId());
-
-	    ResultSet resultSet = stm.executeQuery();
+	    Statement stm = connection.createStatement();
+	    ResultSet resultSet = stm.executeQuery(SQL);
 
 	    while (resultSet.next()) {
 	        int mentorId = resultSet.getInt("id");
